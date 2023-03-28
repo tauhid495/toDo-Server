@@ -64,7 +64,7 @@ async function run() {
         app.patch('/tasks/:id', async (req, res) => {
             const id = req.params.id;
             const completed = req.body;
-            const query = { _id: ObjectId(id) };
+            const query = { timeAsId: id };
             const options = { upsert: true };
             const updatedTask = {
                 $set: completed,
@@ -77,7 +77,7 @@ async function run() {
         app.delete('/tasks/:id', async (req, res) => {
             const id = req.params.id;
             console.log(id);
-            const filter = { _id: ObjectId(id) };
+            const filter = { timeAsId: id };
             const result = await taskCollection.deleteOne(filter);
             res.send(result);
         })

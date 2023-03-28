@@ -49,7 +49,7 @@ async function run() {
         app.put('/tasks/:id', async (req, res) => {
             const id = req.params.id;
             const updateTask = req.body;
-            const query = { _id: ObjectId(id) };
+            const query = { timeAsId: id };
             const options = { upsert: true };
             const updatedTask = {
                 $set: {
